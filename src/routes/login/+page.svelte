@@ -61,6 +61,11 @@
         // Implement GitHub OAuth logic
     };
 </script>
+<svelte:head>
+    <title>Login | NOCD</title>
+    <meta name="description" content="Sign in to your NOCD account to access your dashboard." />
+    <link rel="preload" href="/images/cashew-nut-close-up.jpg" as="image" />
+</svelte:head>
 
 <div class="flex min-h-screen flex-col md:flex-row text-text">
     <!-- Login form section -->

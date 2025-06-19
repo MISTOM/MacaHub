@@ -113,11 +113,11 @@
 
 	// Remove uploaded file
 	function removeFile() {
-		// formData.media = null;
-		// uploadedFileName = '';
-		// if (fileInputElement) {
-		// 	fileInputElement.value = '';
-		// }
+		formData.media = null;
+		uploadedFileName = '';
+		if (fileInputElement) {
+			fileInputElement.value = '';
+		}
 	}
 
 	// Handle form submission

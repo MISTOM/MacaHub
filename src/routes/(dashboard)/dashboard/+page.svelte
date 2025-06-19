@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import type { PageData } from '../../dashboard/$types';
+	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
 

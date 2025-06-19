@@ -78,9 +78,8 @@
 	});
 
 	onDestroy(() => {
-		if (quill) {
-			quill.off('text-change');
-		}
+		if (quill) quill.off('text-change');
+		quill = null; // Clean up Quill instance
 	});
 
 	// Method to get content
@@ -96,9 +95,7 @@
 
 	// Method to set content
 	export function setContent(html: string) {
-		if (quill) {
-			quill.root.innerHTML = html;
-		}
+		if (quill) quill.root.innerHTML = html;
 	}
 </script>
 

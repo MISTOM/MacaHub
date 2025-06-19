@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import RichTextEditor from '$lib/Components/RichTextEditor.svelte';
 
 	let { data }: { data: PageData } = $props();
 
