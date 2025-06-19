@@ -207,8 +207,8 @@
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class="bg-background ml-64 min-h-screen flex-1 p-8" onclick={closeDropdown}>
-	<div class="mx-auto max-w-7xl">
+<div class="bg-background min-h-screen flex-1 p-6" onclick={closeDropdown}>
+	<div class="mx-auto max-w-8xl">
 		<!-- Page Header -->
 		<div class="mb-8">
 			<h1 class="text-primary-dark mb-2 text-3xl font-bold">Product Listings</h1>
@@ -216,7 +216,7 @@
 		</div>
 
 		<!-- Listings Table -->
-		<div class="border-border overflow-hidden rounded-lg border bg-white shadow-sm">
+		<div class="border-border overflow-hidden rounded-lg border bg-white">
 			<!-- Table Header -->
 			<div class="border-border border-b bg-gray-50 px-6 py-4">
 				<h2 class="text-primary-dark text-lg font-semibold">All Listings</h2>
@@ -380,7 +380,7 @@
 														class="flex w-full items-center px-4 py-2 text-left text-sm text-red-600 transition-colors duration-150 hover:bg-red-50"
 													>
 														<i class="bi-trash mr-3 text-red-400"></i>
-														Delete
+														Flag/Delete
 													</button>
 												</div>
 											</div>
@@ -419,7 +419,7 @@
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div
-			class="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black p-4"
+			class="fixed inset-0 z-50 flex items-center justify-center bg-black/10 p-4"
 			onclick={() => toggleDescriptionModal(null)}
 		>
 			<!-- svelte-ignore a11y_click_events_have_key_events -->

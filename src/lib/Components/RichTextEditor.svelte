@@ -6,6 +6,7 @@
 	interface Props {
 		value?: string;
 		placeholder?: string;
+		// Used to indicate if the editor is read-only
 		readonly?: boolean;
 		theme?: 'snow' | 'bubble';
 		onTextChange?: (html: string, text: string) => void;
@@ -27,49 +28,53 @@
 	onMount(async () => {
 		if (!browser) return;
 
-		// Dynamically import Quill to avoid SSR issues
-		const QuillModule = await import('quill');
-		const Quill = QuillModule.default;
+		try {
+			// Dynamically import Quill to avoid SSR issues
+			const QuillModule = await import('quill');
+			const Quill = QuillModule.default;
 
-		//Import css
-		await import('quill/dist/quill.snow.css');
-		await import('quill/dist/quill.bubble.css');
+			//Import css
+			await import('quill/dist/quill.snow.css');
+			await import('quill/dist/quill.bubble.css');
 
-		// Custom toolbar configuration
-		const toolbarOptions = [
-			[{ header: [1, 2, 3, false] }],
-			['bold', 'italic', 'underline', 'strike'],
-			[{ list: 'ordered' }, { list: 'bullet' }],
-			[{ indent: '-1' }, { indent: '+1' }],
-			[{ color: [] }, { background: [] }],
-			[{ align: [] }],
-			['link'],
-			['clean']
-		];
+			// Custom toolbar configuration
+			const toolbarOptions = [
+				[{ header: [1, 2, 3, false] }],
+				['bold', 'italic', 'underline', 'strike'],
+				[{ list: 'ordered' }, { list: 'bullet' }],
+				[{ indent: '-1' }, { indent: '+1' }],
+				[{ color: [] }, { background: [] }],
+				[{ align: [] }],
+				['link'],
+				['clean']
+			];
 
-		quill = new Quill(editorElement, {
-			theme: theme,
-			readOnly: readonly,
-			placeholder: placeholder,
-			modules: {
-				toolbar: toolbarOptions
+			quill = new Quill(editorElement, {
+				theme: theme,
+				readOnly: readonly,
+				placeholder: placeholder,
+				modules: {
+					toolbar: toolbarOptions
+				}
+			});
+
+			// Set initial value
+			if (value) {
+				quill.root.innerHTML = value;
 			}
-		});
 
-		// Set initial value
-		if (value) {
-			quill.root.innerHTML = value;
+			// Listen for text changes
+			quill.on('text-change', () => {
+				const html = quill?.root.innerHTML || '';
+				const text = quill?.getText() || '';
+				if (onTextChange) {
+					onTextChange(html, text);
+				}
+			});
+		} catch (error) {
+			console.error('Failed to initialize Quill:\n', error);
+			quill = null; // Ensure quill is null if there's an error
 		}
-
-		// Listen for text changes
-
-		quill.on('text-change', () => {
-			const html = quill?.root.innerHTML || '';
-			const text = quill?.getText() || '';
-			if (onTextChange) {
-				onTextChange(html, text);
-			}
-		});
 	});
 
 	onDestroy(() => {
