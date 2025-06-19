@@ -277,7 +277,7 @@
 								>
 									<span>{tag}</span>
 									<button
-									aria-label="Remove tag"
+										aria-label="Remove tag"
 										type="button"
 										onclick={() => removeTag(tag)}
 										class="text-primary/60 hover:text-primary hover:bg-primary/20 flex h-4 w-4 items-center justify-center rounded-full transition-colors"
@@ -309,7 +309,9 @@
 
 				<!-- Media Upload -->
 				<div class="mb-8">
-					<label for="fileInput" class="text-primary-dark mb-2 block text-sm font-medium">Media</label>
+					<label for="fileInput" class="text-primary-dark mb-2 block text-sm font-medium"
+						>Media</label
+					>
 
 					{#if uploadedFileName}
 						<!-- File uploaded -->
@@ -335,8 +337,8 @@
 					{:else}
 						<!-- Upload area -->
 						<div
-						role="button"
-						tabindex="0"
+							role="button"
+							tabindex="0"
 							class="border-border hover:border-primary/50 hover:bg-primary/5 rounded-lg border-2 border-dashed p-8 text-center transition-colors"
 							ondrop={handleFileDrop}
 							ondragover={handleDragOver}

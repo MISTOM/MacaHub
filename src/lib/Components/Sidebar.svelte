@@ -124,12 +124,14 @@
 							<i class="bi bi-bell mr-3 text-gray-400"></i>
 							Notifications
 						</button>
-						<button
-							class="mt-1 flex w-full items-center border-t border-gray-100 px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-50"
-						>
-							<i class="bi bi-box-arrow-right mr-3 text-gray-400"></i>
-							Log out
-						</button>
+						<a href="/login">
+							<button
+								class="mt-1 flex w-full items-center border-t border-gray-100 px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-50"
+							>
+								<i class="bi bi-box-arrow-right mr-3 text-gray-400"></i>
+								Log out
+							</button>
+						</a>
 					</div>
 				</div>
 			{/if}
