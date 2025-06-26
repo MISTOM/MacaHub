@@ -10,7 +10,7 @@
 		email: string;
 		role: string;
 		status: 'Active' | 'Inactive' | 'Pending';
-		joinDate: string;
+		lastActive: string;
 		location: string;
 		phone: string;
 	}
@@ -23,7 +23,7 @@
 			email: 'john.kamau@email.com',
 			role: 'Farmer',
 			status: 'Active',
-			joinDate: '2024-01-15',
+			lastActive: '2024-01-15',
 			location: 'Kiambu County',
 			phone: '+254 712 345 678'
 		},
@@ -33,7 +33,7 @@
 			email: 'mary.wanjiku@email.com',
 			role: 'Cooperative Manager',
 			status: 'Active',
-			joinDate: '2024-02-20',
+			lastActive: '2024-02-20',
 			location: 'Nyeri County',
 			phone: '+254 723 456 789'
 		},
@@ -43,7 +43,7 @@
 			email: 'peter.ochieng@email.com',
 			role: 'Market Vendor',
 			status: 'Pending',
-			joinDate: '2024-03-10',
+			lastActive: '2024-03-10',
 			location: 'Kisumu County',
 			phone: '+254 734 567 890'
 		},
@@ -53,7 +53,7 @@
 			email: 'grace.akinyi@email.com',
 			role: 'Farmer',
 			status: 'Active',
-			joinDate: '2024-01-28',
+			lastActive: '2024-01-28',
 			location: 'Homa Bay County',
 			phone: '+254 745 678 901'
 		},
@@ -63,7 +63,7 @@
 			email: 'david.mwangi@email.com',
 			role: 'Agricultural Officer',
 			status: 'Active',
-			joinDate: '2023-11-12',
+			lastActive: '2023-11-12',
 			location: 'Meru County',
 			phone: '+254 756 789 012'
 		},
@@ -73,7 +73,7 @@
 			email: 'sarah.njeri@email.com',
 			role: 'Farmer',
 			status: 'Inactive',
-			joinDate: '2024-02-05',
+			lastActive: '2024-02-05',
 			location: 'Nakuru County',
 			phone: '+254 767 890 123'
 		},
@@ -83,7 +83,7 @@
 			email: 'james.kipkoech@email.com',
 			role: 'Market Vendor',
 			status: 'Active',
-			joinDate: '2024-04-01',
+			lastActive: '2024-04-01',
 			location: 'Uasin Gishu County',
 			phone: '+254 778 901 234'
 		},
@@ -93,7 +93,7 @@
 			email: 'alice.wambui@email.com',
 			role: 'Exporter',
 			status: 'Active',
-			joinDate: '2024-03-15',
+			lastActive: '2024-03-15',
 			location: 'Nairobi County',
 			phone: '+254 789 012 345'
 		},
@@ -103,7 +103,7 @@
 			email: 'robert.kiprotich@email.com',
 			role: 'Farmer',
 			status: 'Pending',
-			joinDate: '2024-04-10',
+			lastActive: '2024-04-10',
 			location: 'Kericho County',
 			phone: '+254 790 123 456'
 		},
@@ -113,7 +113,7 @@
 			email: 'margaret.nyongo@email.com',
 			role: 'Agricultural Officer',
 			status: 'Active',
-			joinDate: '2024-02-14',
+			lastActive: '2024-02-14',
 			location: 'Kisumu County',
 			phone: '+254 701 234 567'
 		}
@@ -383,7 +383,7 @@
 							<th
 								class="text-text/70 px-6 py-3 text-left text-xs font-medium tracking-wider uppercase"
 							>
-								Join Date
+								Last Active
 							</th>
 							<th
 								class="text-text/70 px-6 py-3 text-left text-xs font-medium tracking-wider uppercase"
@@ -471,7 +471,7 @@
 									{user.location}
 								</td>
 								<td class="text-text px-6 py-4 text-sm whitespace-nowrap">
-									{formatDate(user.joinDate)}
+									{formatDate(user.lastActive)}
 								</td>
 								<td class="text-text/70 px-6 py-4 text-sm whitespace-nowrap">
 									<div class="relative">
@@ -487,32 +487,7 @@
 										</button>
 
 										{#if activeDropdown === user.id}
-											<div
-												class="border-border absolute right-0 z-10 mt-2 w-48 rounded-md border bg-white shadow-lg"
-											>
-												<div class="py-1">
-													<button
-														onclick={(e) => {
-															e.stopPropagation();
-															manageUser(user);
-														}}
-														class="text-text hover:bg-background hover:text-primary flex w-full items-center px-4 py-2 text-left text-sm transition-colors duration-150"
-													>
-														<i class="bi-gear text-text/60 mr-3"></i>
-														Manage User
-													</button>
-													<button
-														onclick={(e) => {
-															e.stopPropagation();
-															deleteUser(user);
-														}}
-														class="text-error hover:bg-error/10 flex w-full items-center px-4 py-2 text-left text-sm transition-colors duration-150"
-													>
-														<i class="bi-trash text-error mr-3"></i>
-														Delete User
-													</button>
-												</div>
-											</div>
+										{@render userActions(user)}
 										{/if}
 									</div>
 								</td>
@@ -542,3 +517,70 @@
 		</div>
 	</div>
 </div>
+
+{#snippet userActions(user: any)}
+<!-- User Actions Dropdown -->
+	<div class="border-border absolute right-0 z-10 mt-2 w-48 rounded-md border bg-white shadow-lg">
+		<div class="py-1">
+			<!-- View Details -->
+			<button
+				onclick={(e) => {
+					e.stopPropagation();
+					manageUser(user);
+				}}
+				class="text-text hover:bg-background hover:text-primary flex w-full items-center px-4 py-2 text-left text-sm transition-colors duration-150"
+			>
+				<i class="bi-eye text-text/60 mr-3"></i>
+				View Details
+			</button>
+
+			<!-- Edit User -->
+			<button
+				onclick={(e) => {
+					e.stopPropagation();
+					manageUser(user);
+				}}
+				class="text-text hover:bg-background hover:text-primary flex w-full items-center px-4 py-2 text-left text-sm transition-colors duration-150"
+			>
+				<i class="bi-pencil text-text/60 mr-3"></i>
+				Edit User
+			</button>
+
+			<!-- Contact -->
+			<button
+				onclick={(e) => {
+					e.stopPropagation();
+					manageUser(user);
+				}}
+				class="text-text hover:bg-background hover:text-primary flex w-full items-center px-4 py-2 text-left text-sm transition-colors duration-150"
+			>
+				<i class="bi-envelope text-text/60 mr-3"></i>
+				Contact
+			</button>
+
+			<!-- Suspend User -->
+			<button
+				onclick={(e) => {
+					e.stopPropagation();
+					manageUser(user);
+				}}
+				class="text-warning hover:bg-warning/5 flex w-full items-center px-4 py-2 text-left text-sm transition-colors duration-150"
+			>
+				<i class="bi-pause-circle text-warning mr-3"></i>
+				Suspend User
+			</button>
+
+			<!-- Delete User -->
+			<!-- <button
+				onclick={(e) => {
+					e.stopPropagation();
+					deleteUser(user);
+				}}
+				class="text-error hover:bg-error/10 flex w-full items-center px-4 py-2 text-left text-sm transition-colors duration-150"
+			>
+				<i class="bi-trash text-error mr-3"></i>
+				Delete User
+			</button> -->
+		</div>
+	</div>
+{/snippet}

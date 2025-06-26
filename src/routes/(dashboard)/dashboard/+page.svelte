@@ -99,7 +99,7 @@
 		} else if (amount >= 1000) {
 			return `KSh ${(amount / 1000).toFixed(1)}K`;
 		}
-		return `KSh ${amount.toLocaleString()}`;
+		return `Kes ${amount.toLocaleString()}`;
 	}
 
 	// Get growth indicator class
@@ -293,31 +293,32 @@
 
 			<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 				<!-- Add User -->
-				<!-- <button
-					class="bg-primary-dark hover:bg-primary focus:ring-primary rounded-lg p-6 text-center text-white transition-colors duration-150 focus:ring-2 focus:ring-offset-2 focus:outline-none"
-				>
+				 
+				<button
+					class="hover:bg-background border-border text-text focus:ring-primary/50 cursor-pointer rounded-lg border bg-white p-6 text-center transition-colors duration-150 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+					>
 					<div class="flex flex-col items-center space-y-3">
 						<i class="bi-person-plus text-2xl"></i>
 						<span class="text-sm font-medium">Add User</span>
 					</div>
-				</button> -->
+				</button>
 
 				<!-- Create Post -->
-				<button
-					class="hover:bg-background border-border cursor-pointer text-text focus:ring-primary/50 rounded-lg border bg-white p-6 text-center transition-colors duration-150 focus:ring-2 focus:ring-offset-2 focus:outline-none"
-					onclick={() => goto('/posts/create')}
+				<a
+					href="/posts/create"
+					class="hover:bg-background border-border text-text focus:ring-primary/50 cursor-pointer rounded-lg border bg-white p-6 text-center transition-colors duration-150 focus:ring-2 focus:ring-offset-2 focus:outline-none"
 				>
 					<div class="flex flex-col items-center space-y-3">
 						<i class="bi-file-earmark-plus text-text/70 text-2xl"></i>
 						<span class="text-sm font-medium">Create Post</span>
 					</div>
-				</button>
+				</a>
 
 				<!-- Review Listings -->
 				<button
-					class="hover:bg-background border-border cursor-pointer text-text focus:ring-primary rounded-lg border bg-white p-6 text-center transition-colors duration-150 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+					class="hover:bg-background border-border text-text focus:ring-primary cursor-pointer rounded-lg border bg-white p-6 text-center transition-colors duration-150 focus:ring-2 focus:ring-offset-2 focus:outline-none"
 					onclick={() => goto('/listings')}
-					>
+				>
 					<div class="flex flex-col items-center space-y-3">
 						<i class="bi-eye text-text/70 text-2xl"></i>
 						<span class="text-sm font-medium">Review Listings</span>
@@ -326,9 +327,9 @@
 
 				<!-- View Reports -->
 				<button
-					class="hover:bg-background border-border cursor-pointer text-text focus:ring-primary rounded-lg border bg-white p-6 text-center transition-colors duration-150 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+					class="hover:bg-background border-border text-text focus:ring-primary cursor-pointer rounded-lg border bg-white p-6 text-center transition-colors duration-150 focus:ring-2 focus:ring-offset-2 focus:outline-none"
 					onclick={() => goto('/reports')}
-					>
+				>
 					<div class="flex flex-col items-center space-y-3">
 						<i class="bi-graph-up text-text/70 text-2xl"></i>
 						<span class="text-sm font-medium">View Reports</span>

@@ -207,7 +207,7 @@
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div class="bg-background min-h-screen flex-1 p-6" onclick={closeDropdown}>
-	<div class="mx-auto max-w-8xl">
+	<div class="max-w-8xl mx-auto">
 		<!-- Page Header -->
 		<div class="mb-8">
 			<h1 class="text-primary-dark mb-2 text-3xl font-bold">Product Listings</h1>
@@ -357,7 +357,7 @@
 														class="flex w-full items-center px-4 py-2 text-left text-sm text-gray-700 transition-colors duration-150 hover:bg-gray-100"
 													>
 														<i class="bi-gear mr-3 text-gray-400"></i>
-														Manage
+														Edit
 													</button>
 													{#if listing.status === 'Pending'}
 														<button
@@ -370,6 +370,40 @@
 															<i class="bi-check-circle mr-3 text-green-400"></i>
 															Approve
 														</button>
+													{:else}
+														<button
+															onclick={(e) => {
+																e.stopPropagation();
+																approveListing(listing);
+															}}
+															class="text-accent hover:bg-accent/10 flex w-full items-center px-4 py-2 text-left text-sm transition-colors duration-150"
+														>
+															<i class="bi-x-circle mr-3 text-accent"></i>
+															Disapprove
+														</button>
+													{/if}
+													{#if listing.status === 'Pending'} <!--If listing is active-->
+														<button
+															onclick={(e) => {
+																e.stopPropagation();
+																approveListing(listing);
+															}}
+															class="flex w-full items-center px-4 py-2 text-left text-sm text-green-600 transition-colors duration-150 hover:bg-green-50"
+														>
+															<i class=" bi-check-circle mr-3 text-green-400"></i>
+															Activate
+														</button>
+													{:else}
+														<button
+															onclick={(e) => {
+																e.stopPropagation();
+																approveListing(listing);
+															}}
+															class="text-accent hover:bg-accent/10 flex w-full items-center px-4 py-2 text-left text-sm transition-colors duration-150"
+														>
+															<i class="bi-x-circle mr-3 text-accent"></i>
+															Deactivate
+														</button>
 													{/if}
 													<button
 														onclick={(e) => {
@@ -379,7 +413,7 @@
 														class="flex w-full items-center px-4 py-2 text-left text-sm text-red-600 transition-colors duration-150 hover:bg-red-50"
 													>
 														<i class="bi-trash mr-3 text-red-400"></i>
-														Flag/Delete
+														Reject
 													</button>
 												</div>
 											</div>
@@ -403,13 +437,10 @@
 						<span>Rejected: {listings.filter((l) => l.status === 'Rejected').length}</span>
 					</div>
 				</div>
-				
 			</div>
 		</div>
 	</div>
 </div>
-
-
 
 <!-- Description Modal -->
 {#if showDescriptionModal}

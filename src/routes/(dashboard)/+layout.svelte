@@ -6,9 +6,12 @@
 		{ name: 'Home', icon: 'bi-house', path: '/' },
 		{ name: 'Dashboard', icon: 'bi-speedometer2', path: '/dashboard' },
 		{ name: 'Analytics', icon: 'bi-graph-up', path: '/analytics' },
-		{ name: 'Users', icon: 'bi-people', path: '/users' },
 		{ name: 'Listings', icon: 'bi-grid-3x3-gap', path: '/listings' },
 		{ name: 'Posts', icon: 'bi bi-book', path: '/posts' },
+		{ name: 'Users', icon: 'bi-people', path: '/users' },
+		{ name: 'Resources', icon: 'bi-folder2', path: '/resources' },
+		{ name: 'Documents', icon: 'bi-file-earmark', path: '/documents' },
+		{ name: 'Reports', icon: 'bi-file-earmark-text', path: '/reports' },
 		{ name: 'Settings', icon: 'bi-gear', path: '/settings' },
 	]);
 
